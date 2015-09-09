@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Chat Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body ng-app="gameApp">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand navbar-center" href="#">Web On The Run</a>
+        </div>
+      </div>
+    </nav>
+    
+    <br>
+    <br>
+    <br>
+    
+    <div class="jumbotron">
+      <div class="container">
+            <div class="row" >
+              <div class="col-md-4">
+                <h2 class="text-center"> Enter players Name</h2>
+                <p>Name : <input type="text" ng-model="playerOne" placeholder="Enter name here"></p>
+                <p>Name : <input type="text" ng-model="playerTwo" placeholder="Enter name here"></p>
+            
+             </div>  <!-- end of players col-->
+             
+              <div class="col-md-8" >
+                <h1 class="text-center">Game</h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                      <h3 class="text-center"> Player1:&nbsp; {{playerOne}}</h3>
+                    </div>
+                    <div class="col-sm-6">
+                       <h3 class="text-center"> Player2:&nbsp; {{playerTwo}}</h3>
+                    </div>
+                  </div> <!-- end of Player section-->
+                  <div class="row" ng-controller="SampleCtrl">
+                    <h2 class="text-center">Lap</h2>
+                    {{data}}
+                  </div>
+                  
+                </div><!-- end of Game col-->
+            </div>
+      </div><!-- end of container col-->
+    </div>
+    
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <!-- AngularFire -->
+    <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+    </script>
+    <script type="text/javascript" src="./js/game.js"></script>
+
+  </body>
+</html>
