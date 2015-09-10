@@ -1,74 +1,135 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Chat Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
-        <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand navbar-center" href="#">Web On The Run</a>
+
+<head>
+  <title>Web On The Run</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-center" href="#">Web On The Run</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="jumbotron" ng-app="gameApp">
+    <div class="container">
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-info btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Start Game</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h2 class="modal-title text-center">Enter players Name</h2>
+            </div>
+            <div class="modal-body">
+              <p>Player 1:
+              <input type="text" ng-model="playerOne" placeholder="Enter name here" class="col-md-offset-1">
+              </p>
+              
+              <p>Player 2:
+              <input type="text" ng-model="playerTwo" placeholder="Enter name here" class="col-md-offset-1">
+              </p>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-inverse btn-large btn-block" data-dismiss="modal" id="start">Start</button>
+            </div>
+          </div>
+
         </div>
       </div>
-    </nav>
-    
-    <br>
-    <br>
-    <br>
-    
-    <div class="jumbotron" ng-app="gameApp" >
-      <div class="container" >
-            <div class="row" >
-              <div class="col-md-4">
-                <h2 class="text-center"> Enter players Name</h2>
-                <p>Name : <input type="text" ng-model="playerOne"  placeholder="Enter name here"></p>
-                <p>Name : <input type="text" placeholder="Enter name here"></p>
-            
-             </div>  <!-- end of players col-->
-             
-              <div class="col-md-8" ng-controller="SampleCtrl">
-                <h1 class="text-center">Current Game</h1>
-                <h2 class="text-center">Lap:&nbsp; {{data.Laps}}</h2>
-                <div class="row">
-                    <div class="col-sm-6">
-                 
-                      <h3 class="text-center"> Player1:&nbsp; {{ playerOne}}</h3>
-                      <p>Health:&nbsp; {{data.PlayerOne.Health}}</p>
-                      <progress id="health" value="{{data.PlayerOne.Health}}" max="100"></progress>
-                        <p>Power Up:&nbsp; {{data.PlayerOne.PowerUp}}</p>
-                    
-                    </div>
-                    <div class="col-sm-6" >
-                       <h3 class="text-center"> Player2:&nbsp; </h3>  
-                       <p>Health:&nbsp; {{data.PlayerTwo.Health}}</p>
-                    <progress id="health" value="{{data.PlayerTwo.Health}}" max="100"></progress>
-                       <p>Power Up:&nbsp; {{data.PlayerTwo.PowerUp}}</p>
-                    </div>
-                  </div> <!-- end of Player section-->
-                  <div class="row">
-                    
-                    
-                  </div>
-                  
-                </div><!-- end of Game col-->
-            </div>
-      </div><!-- end of container col-->
-    </div>
-    
-    
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="/js/angular.min.js"></script>
-        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-    <!-- AngularFire -->
-    <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
-    </script>
-    <script type="text/javascript" src="./js/game.js"></script>
+      
+      <!-- Timer -->
+      <div id="countdown">5</div>
 
-  </body>
+
+      <!--<div class="row ">-->
+      <!--  <div class="col-md-12 players">-->
+      <!--    <h2 class="text-center"> Enter players Name</h2>-->
+      <!--    <div class="col-md-6 inputName">-->
+      <!--      <p>Player 1:-->
+      <!--        <input type="text" ng-model="playerOne" placeholder="Enter name here" class="col-md-offset-1">-->
+      <!--      </p>-->
+      <!--    </div>-->
+
+      <!--    <div class="col-md-6 inputName">-->
+      <!--      <p>Player 2:-->
+      <!--        <input type="text" ng-model="playerTwo" placeholder="Enter name here" class="col-md-offset-1">-->
+      <!--      </p>-->
+      <!--    </div>-->
+      <!--  </div>-->
+        <!-- end of players col-->
+      <!--</div>-->
+
+      <!--<hr>-->
+
+      <div class="row">
+        <div class="col-md-12" ng-controller="SampleCtrl">
+          <h1 class="text-center">Current Game</h1>
+          <h2 class="text-center">Lap:&nbsp; {{data.Laps}}</h2>
+          <div class="row">
+            <div class="col-sm-6">
+
+              <h3 class="text-center"> Player1:&nbsp; {{ playerOne }}</h3>
+              <p>Health:&nbsp; {{data.PlayerOne.Health}}</p>
+              <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{data.PlayerOne.Health}}"
+                    aria-valuemin="0" aria-valuemax="100" style="width:{{data.PlayerOne.Health}}%">
+                      {{data.PlayerOne.Health}}%
+                    </div>
+              </div>
+              <p>Power Up:&nbsp; {{data.PlayerOne.PowerUp}}</p>
+
+            </div>
+            <div class="col-sm-6">
+              <h3 class="text-center"> Player2:&nbsp; {{ playerTwo }} </h3>
+              <p>Health:&nbsp; {{data.PlayerTwo.Health}}</p>
+              <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{data.PlayerTwo.Health}}"
+                    aria-valuemin="0" aria-valuemax="100" style="width:{{data.PlayerTwo.Health}}%">
+                      {{data.PlayerTwo.Health}}%
+                    </div>
+              </div>
+              <p>Power Up:&nbsp; {{data.PlayerTwo.PowerUp}}</p>
+            </div>
+          </div>
+          <!-- end of Player section-->
+          <div class="row">
+
+          </div>
+
+        </div>
+        <!-- end of Game col-->
+      </div>
+    </div>
+    <!-- end of container col-->
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="/js/angular.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <!-- AngularFire -->
+  <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+  <script type="text/javascript" src="./js/game.js"></script>
+
+</body>
+
 </html>
