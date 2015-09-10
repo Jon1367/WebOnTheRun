@@ -20,8 +20,8 @@
     <br>
     <br>
     
-    <div class="jumbotron">
-      <div class="container"  ng-controller="SampleCtrl">
+    <div class="jumbotron" >
+      <div class="container">
             <div class="row" >
               <div class="col-md-4">
                 <h2 class="text-center"> Enter players Name</h2>
@@ -30,19 +30,19 @@
             
              </div>  <!-- end of players col-->
              
-              <div class="col-md-8" >
+              <div class="col-md-8"  ng-controller="SampleCtrl">
                 <h1 class="text-center">Current Game</h1>
                 <h2 class="text-center">Lap:&nbsp; {{data.Laps}}</h2>
                 <div class="row">
                     <div class="col-sm-6">
-                      <h3 class="text-center"> Player1:&nbsp; {{playerOne}}</h3>
+                      <h3 class="text-center"> Player1:&nbsp; </h3>
                       <p>Health:&nbsp; {{data.PlayerOne.Health}}</p>
-                      <progress id="health" ng-value="{{data.PlayerOne.Health}}" max="100"></progress>
+                      <progress id="health" ng-value="data.PlayerOne.Health" max="100"></progress>
                         <p>Power Up:&nbsp; {{data.PlayerOne.PowerUp}}</p>
                     
                     </div>
                     <div class="col-sm-6">
-                       <h3 class="text-center"> Player2:&nbsp; {{playerTwo}}</h3>  
+                       <h3 class="text-center"> Player2:&nbsp; </h3>  
                        <p>Health:&nbsp; {{data.PlayerTwo.Health}}</p>
                        <p>Power Up:&nbsp; {{data.PlayerTwo.PowerUp}}</p>
                     </div>
