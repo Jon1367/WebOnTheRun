@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="/css/style.css">
   </head>
-  <body ng-app="gameApp">
+  <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -20,30 +20,32 @@
     <br>
     <br>
     
-    <div class="jumbotron" >
-      <div class="container">
+    <div class="jumbotron" ng-app="gameApp" >
+      <div class="container" >
             <div class="row" >
               <div class="col-md-4">
                 <h2 class="text-center"> Enter players Name</h2>
-                <p>Name : <input type="text" ng-model="playerOne" placeholder="Enter name here"></p>
-                <p>Name : <input type="text" ng-model="playerTwo" placeholder="Enter name here"></p>
+                <p>Name : <input type="text" ng-model="playerOne"  placeholder="Enter name here"></p>
+                <p>Name : <input type="text" placeholder="Enter name here"></p>
             
              </div>  <!-- end of players col-->
              
-              <div class="col-md-8"  ng-controller="SampleCtrl">
+              <div class="col-md-8" ng-controller="SampleCtrl">
                 <h1 class="text-center">Current Game</h1>
                 <h2 class="text-center">Lap:&nbsp; {{data.Laps}}</h2>
                 <div class="row">
                     <div class="col-sm-6">
-                      <h3 class="text-center"> Player1:&nbsp; </h3>
+                 
+                      <h3 class="text-center"> Player1:&nbsp; {{ playerOne}}</h3>
                       <p>Health:&nbsp; {{data.PlayerOne.Health}}</p>
-                      <progress id="health" ng-value="data.PlayerOne.Health" max="100"></progress>
+                      <progress id="health" value="{{data.PlayerOne.Health}}" max="100"></progress>
                         <p>Power Up:&nbsp; {{data.PlayerOne.PowerUp}}</p>
                     
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" >
                        <h3 class="text-center"> Player2:&nbsp; </h3>  
                        <p>Health:&nbsp; {{data.PlayerTwo.Health}}</p>
+                    <progress id="health" value="{{data.PlayerTwo.Health}}" max="100"></progress>
                        <p>Power Up:&nbsp; {{data.PlayerTwo.PowerUp}}</p>
                     </div>
                   </div> <!-- end of Player section-->
